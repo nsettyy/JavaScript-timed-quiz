@@ -43,3 +43,11 @@ h1, h2 {
 #quiz, #end-screen, #high-scores {
     display: none;
 }
+
+#answers {
+    font-size: 30px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 10px;
+}

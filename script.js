@@ -1,5 +1,5 @@
 //global variables
-var startButtonEl = document.getElementById("#start-button");
+var startButtonEl = document.getElementById("start-button");
 var homeEl = document.getElementById("home");
 var quizEl = document.getElementById("quiz");
 var endScreenEl = document.getElementById("end-screen");
@@ -24,7 +24,7 @@ const questions = [
   {
     question: "How do you select an Id within JavaScript?",
     answers: ["selectId", "getId", "querySelector", "websiteSelector"],
-    correctIndex: 2,
+    correctIndex: 3,
   },
   {
     question: "Approximately when was JavaScript invented?",
@@ -77,11 +77,11 @@ function displayQuestion() {
     finalScoreEl.textContent = score;
   } else {
     for (let i = 0; i < 4; ++i) {
-      let answerEl = document.getElementById(`choice${i}`);
+      var answerEl = document.getElementById(`answer${i}`);
       questionEl.textContent = questions[currentQuestion].question;
       answerEl.textContent = questions[currentQuestion].answers[i];
-      choiceEl.onclick = function (e) {
-        let correctAnswer = questions[currentQuestion].correctIndex;
+      answerEl.onclick = function (e) {
+        var correctAnswer = questions[currentQuestion].correctIndex;
         if (i == correctAnswer) {
           score++;
           scoreEl.textContent = `Score: ${score}`;
@@ -98,7 +98,7 @@ function displayQuestion() {
 startButtonEl.addEventListener("click", function () {
   homeEl.style.display = "none";
   quizEl.style.display = "block";
-  scoreEl.textContent = `Score: ${score}`;
+//   scoreEl.textContent = `Score: ${score}`;
   countdown();
   displayQuestion();
 });
