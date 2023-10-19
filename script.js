@@ -55,11 +55,9 @@ var timeInterval;
 
 function countdown() {
   timerEl.textContent = "Time Left: " + timeLeft;
-
   timeInterval = setInterval(function () {
     timeLeft--;
     timerEl.textContent = "Time Left: " + timeLeft;
-
     if (timeLeft <= 0) {
       quizEl.style.display = "none";
       endEl.style.display = "block";
