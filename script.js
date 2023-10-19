@@ -24,7 +24,7 @@ const questions = [
   {
     question: "How do you select an Id within JavaScript?",
     answers: ["selectId", "getId", "querySelector", "websiteSelector"],
-    correctIndex: 3,
+    correctIndex: 2,
   },
   {
     question: "Approximately when was JavaScript invented?",
@@ -98,7 +98,7 @@ function displayQuestion() {
 startButtonEl.addEventListener("click", function () {
   homeEl.style.display = "none";
   quizEl.style.display = "block";
-//   scoreEl.textContent = `Score: ${score}`;
+  scoreEl.textContent = `Score: ${score}`;
   countdown();
   displayQuestion();
 });
