@@ -1,6 +1,13 @@
 //global variables
-var startButtonEl = document.querySelector.getElementById("start-button");
-var homeEl = document.querySelector.getElementById("home");
+var startButtonEl = document.getElementById("#start-button");
+var homeEl = document.getElementById("home");
+var quizEl = document.getElementById("quiz");
+var endScreenEl = document.getElementById("end-screen");
+var timerEl = document.getElementById("timer");
+var questionEl = document.getElementById("question");
+var answerEl = document.getElementById("answers");
+var scoreEl = document.getElementById("score");
+var finalScoreEl = document.getElementById("final-score");
 
 //quiz questions
 const questions = [
@@ -40,3 +47,58 @@ const questions = [
     correctIndex: 0,
   },
 ];
+
+var currentQuestion = 0;
+var timeLeft = 60;
+var score = 0;
+var timeInterval;
+
+function countdown() {
+  timerEl.textContent = "Time Left: " + timeLeft;
+
+  timeInterval = setInterval(function () {
+    timeLeft--;
+    timerEl.textContent = "Time Left: " + timeLeft;
+
+    if (timeLeft <= 0) {
+      quizEl.style.display = "none";
+      endEl.style.display = "block";
+      clearInterval(timeInterval);
+      finalScoreEl.textContent = score;
+    }
+  }, 1000);
+}
+
+function displayQuestion() {
+  if (currentQuestion >= questions.length) {
+    quizEl.style.display = "none";
+    endScreenEl.style.display = "block";
+    clearInterval(timeInterval);
+    finalScoreEl.textContent = score;
+  } else {
+    for (let i = 0; i < 4; ++i) {
+      let answerEl = document.getElementById(`choice${i}`);
+      questionEl.textContent = questions[currentQuestion].question;
+      answerEl.textContent = questions[currentQuestion].answers[i];
+      choiceEl.onclick = function (e) {
+        let correctAnswer = questions[currentQuestion].correctIndex;
+        if (i == correctAnswer) {
+          score++;
+          scoreEl.textContent = `Score: ${score}`;
+        } else {
+          timeLeft -= 5;
+        }
+        currentQuestion += 1;
+        displayQuestion();
+      };
+    }
+  }
+}
+
+startButtonEl.addEventListener("click", function () {
+  homeEl.style.display = "none";
+  quizEl.style.display = "block";
+  scoreEl.textContent = `Score: ${score}`;
+  countdown();
+  displayQuestion();
+});

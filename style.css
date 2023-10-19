@@ -32,15 +32,7 @@ h1, h2 {
     align-items: center;
 }
 
-.text-center {
-    text-align: center;
-}
-
-.hidden {
-    display: none;
-}
-
-.button {
+#start-button {
     font-size: 30px;
     text-align: center;
     background-color: black;
@@ -48,3 +40,6 @@ h1, h2 {
     padding: 10px;
 }
 
+#quiz, #end-screen, #high-scores {
+    display: none;
+}
