@@ -1,0 +1,9 @@
+.quiz-container {
+  display: flex;
+  justify-content: center;
+  border: solid, black, 5px;
+}
+ 
+body main section ul {
+    list-style: none;
+}
