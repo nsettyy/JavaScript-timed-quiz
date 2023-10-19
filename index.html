@@ -8,12 +8,28 @@
   </head>
 
   <body>
+
     <div class="container">
-      <div id="home" class="flex-column flex-center">
+
+      <div id="home" class="flex-column flex-center text-center">
         <h1>Nick's Javascript Quiz</h1>
         <h2>Are You Ready?</h2>
-        <button class="button">Start Quiz</button>
+        <button class="button" id="start-button">Start Quiz</button>
       </div>
+
+      <div id="quiz">
+        <h1 id="timer"></h1>
+        <h2 id="questions"></h2>
+        <div id="answers">
+          <button id="answer0"></button>
+          <button id="answer1"></button>
+          <button id="answer2"></button>
+          <button id="answer3"></button>
+        </div>
+      </div>
+
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
