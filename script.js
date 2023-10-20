@@ -2,7 +2,7 @@
 var homeEl = document.getElementById("home");
 var quizEl = document.getElementById("quiz");
 var endScreenEl = document.getElementById("end-screen");
-var highScoreEl = document.getElementById("high-scores")
+var highScoreEl = document.getElementById("high-scores");
 
 var questionEl = document.getElementById("question");
 var answerEl = document.getElementById("answers");
@@ -60,7 +60,6 @@ var timeLeft = 60;
 var score = 0;
 var timeInterval;
 
-
 //This is the timer function for the quiz.
 function countdown() {
   timerEl.textContent = "Time Left: " + timeLeft;
@@ -75,7 +74,6 @@ function countdown() {
     }
   }, 1000);
 }
-
 
 //This function displays the questions in order, gives the user a point based on the correct answer, and subtracts 10 seconds of the user selects a wrong answer.
 function displayQuestion() {
@@ -104,7 +102,6 @@ function displayQuestion() {
   }
 }
 
-
 // This function saves the user's quiz score and initals to local storage as an object to be displayed on the next page
 function saveScore() {
   var highScores = [];
@@ -129,7 +126,6 @@ function saveScore() {
   localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
-
 //This is the event listener for the start button. Starts the timer and runs the "display question" function to start the quiz.
 startButtonEl.addEventListener("click", function () {
   homeEl.style.display = "none";
@@ -139,3 +135,8 @@ startButtonEl.addEventListener("click", function () {
   displayQuestion();
 });
 
+//This is the event listener for the save button. It saves the user's score and intials to local storage and runs the displayScores function to display them on the next page.
+saveButtonEl.addEventListener('click', function () {
+  saveScore();
+  displayScores();
+});
