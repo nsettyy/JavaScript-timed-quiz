@@ -9,6 +9,7 @@ var answerEl = document.getElementById("answers");
 var scoreEl = document.getElementById("score");
 var finalScoreEl = document.getElementById("final-score");
 var initialsEl = document.getElementById("initals");
+var highScoreListEl = document.getElementById("highscore-list")
 
 // Timer and buttonn Id's
 var timerEl = document.getElementById("timer");
@@ -102,33 +103,23 @@ function displayQuestion() {
   }
 }
 
-// This function saves the user's quiz score and initals to local storage as an object to be displayed on the next page
-function saveScore() {
-  var highScores = [];
+// These functions take in the user's score data and intials, save them to local storage, and display them on the high scores page.
+saveButtonEl.addEventListener("click", function(event) {
   var newScore = {
     name: initialsEl,
-    score: score,
-  };
-  var lastScore = localStorage.getItem("highScores");
-  if (lastScore !== null) {
-    highScores = JSON.parse(lastScore);
+    score: score.value,
   }
-  var oldScore = false;
-  for (score of highScores) {
-    if (score["name"] == newScore["name"]) {
-      oldScore = true;
-      score["score"] = newScore["score"];
-    }
-  }
-  if (!oldScore) {
-    highScores.push(newScore);
-  }
-  localStorage.setItem("highScores", JSON.stringify(highScores));
-}
+  localStorage.setItem("newScore", JSON.stringify(newScore));
+  displayScores()
+})
 
 function displayScores() {
   endScreenEl.style.display = "none";
   highScoreEl.style.display = "block";
+  var highScores = JSON.parse(localStorage.getItem("newScore"));
+  if (highScores = !null) {
+    highScoreListEl.textContent = highScores.name + highScores.score;
+  }
 }
 
 
@@ -139,10 +130,4 @@ startButtonEl.addEventListener("click", function () {
   scoreEl.textContent = score;
   countdown();
   displayQuestion();
-});
-
-//This is the event listener for the save button. It saves the user's score and intials to local storage and runs the displayScores function to display them on the next page.
-saveButtonEl.addEventListener("click", function () {
-  saveScore();
-  displayScores();
 });
