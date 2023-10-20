@@ -1,4 +1,3 @@
-//global variables
 var startButtonEl = document.getElementById("start-button");
 var homeEl = document.getElementById("home");
 var quizEl = document.getElementById("quiz");
@@ -9,7 +8,7 @@ var answerEl = document.getElementById("answers");
 var scoreEl = document.getElementById("score");
 var finalScoreEl = document.getElementById("final-score");
 
-//quiz questions
+//These are the 5 quiz questions, with corresponding answer choices.
 const questions = [
   {
     question: "What is the main purpose of JavaScript?",
@@ -53,6 +52,7 @@ var timeLeft = 60;
 var score = 0;
 var timeInterval;
 
+//This is the timer function for the quiz.
 function countdown() {
   timerEl.textContent = "Time Left: " + timeLeft;
   timeInterval = setInterval(function () {
@@ -67,6 +67,7 @@ function countdown() {
   }, 1000);
 }
 
+//This function displays the questions in order, gives the user a point based on the correct answer, and subtracts 10 seconds of the user selects a wrong answer.
 function displayQuestion() {
   if (currentQuestion >= questions.length) {
     quizEl.style.display = "none";
@@ -82,9 +83,9 @@ function displayQuestion() {
         var correctAnswer = questions[currentQuestion].correctIndex;
         if (i == correctAnswer) {
           score++;
-          scoreEl.textContent = `Score: ${score}`;
+          scoreEl.textContent = score;
         } else {
-          timeLeft -= 5;
+          timeLeft -= 10;
         }
         currentQuestion += 1;
         displayQuestion();
@@ -93,10 +94,12 @@ function displayQuestion() {
   }
 }
 
+
+//This is the event listener for the start button. Starts the timer and runs the "display question" function to start the quiz.
 startButtonEl.addEventListener("click", function () {
   homeEl.style.display = "none";
   quizEl.style.display = "block";
-  scoreEl.textContent = `Score: ${score}`;
+  scoreEl.textContent = score;
   countdown();
   displayQuestion();
 });
