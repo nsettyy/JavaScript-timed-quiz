@@ -7,6 +7,8 @@ var questionEl = document.getElementById("question");
 var answerEl = document.getElementById("answers");
 var scoreEl = document.getElementById("score");
 var finalScoreEl = document.getElementById("final-score");
+var initialsEl = document.getElementById("initals");
+var saveButtonEl = document.getElementById("save");
 
 //These are the 5 quiz questions, with corresponding answer choices.
 const questions = [
@@ -94,6 +96,29 @@ function displayQuestion() {
   }
 }
 
+// This function saves the user's quiz score and initals to local storage as an object to be displayed on the next page
+function saveScore() {
+  var scoreHistory = [];
+  var newScore = {
+    name: initialsEl.value,
+    score: score,
+  };
+  var lastStorage = localStorage.getItem("scoreHistory");
+  if (lastStorage !== null) {
+    scoreHistory = JSON.parse(lastStorage);
+  }
+  var oldScore = false;
+  for (score of scoreHistory) {
+    if (score["name"] == newScore["name"]) {
+      foundOldScore = true;
+      score["score"] = newScore["score"];
+    }
+  }
+  if (!oldScoreldScore) {
+    scoreHistory.push(newScore);
+  }
+  localStorage.setItem("scoreHistory", JSON.stringify(scoreHistory));
+}
 
 //This is the event listener for the start button. Starts the timer and runs the "display question" function to start the quiz.
 startButtonEl.addEventListener("click", function () {
@@ -103,3 +128,4 @@ startButtonEl.addEventListener("click", function () {
   countdown();
   displayQuestion();
 });
+
