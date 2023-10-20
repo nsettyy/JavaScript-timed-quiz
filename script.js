@@ -106,7 +106,7 @@ function displayQuestion() {
 function saveScore() {
   var highScores = [];
   var newScore = {
-    name: initialsEl.value,
+    name: initialsEl,
     score: score,
   };
   var lastScore = localStorage.getItem("highScores");
@@ -126,6 +126,12 @@ function saveScore() {
   localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
+function displayScores() {
+  endScreenEl.style.display = "none";
+  highScoreEl.style.display = "block";
+}
+
+
 //This is the event listener for the start button. Starts the timer and runs the "display question" function to start the quiz.
 startButtonEl.addEventListener("click", function () {
   homeEl.style.display = "none";
@@ -136,7 +142,7 @@ startButtonEl.addEventListener("click", function () {
 });
 
 //This is the event listener for the save button. It saves the user's score and intials to local storage and runs the displayScores function to display them on the next page.
-saveButtonEl.addEventListener('click', function () {
+saveButtonEl.addEventListener("click", function () {
   saveScore();
   displayScores();
 });
