@@ -103,6 +103,7 @@ function displayQuestion() {
   }
 }
 
+
 // These functions take in the user's score data and intials, save them to local storage, and display them on the high scores page.
 saveButtonEl.addEventListener("click", function(event) {
   var newScore = {
@@ -121,7 +122,6 @@ function displayScores() {
     highScoreListEl.textContent = highScores.name + highScores.score;
   }
 }
-
 
 //This is the event listener for the start button. Starts the timer and runs the "display question" function to start the quiz.
 startButtonEl.addEventListener("click", function () {
